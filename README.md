@@ -8,13 +8,14 @@ pip install --upgrade "tensorflow==1.7.*"
 
 ```
 
+# Fork the git repository
 
 
 # Clone the git repository
 
 
 ```
-git clone https://github.com/Navan0/build-your-first-imageClassifier.git
+git clone https://github.com/username/build-your-first-imageClassifier.git
 
 ```
 

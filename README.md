@@ -29,26 +29,25 @@ cd build-your-first-imageClassifier
 
 
 ```
-curl http://download.tensorflow.org/example_images/flower_photos.tgz \
-    | tar xz -C tf_files
+download your datasets
     
 ```
 
+# Put the images into the classes
+
+```
+ls tf_files/data
+
+```
+
 
 
 ```
-ls tf_files/flower_photos
-
-```
-
-
-
-```
-daisy/
-dandelion/
-roses/
-sunflowers/
-tulip/
+yourclass1/
+yourclass2/
+yourclass3/
+yourclass4/
+yourclass5/
 LICENSE.txt
 
 ```
@@ -98,16 +97,8 @@ python -m scripts.retrain \
 ```
 python -m scripts.label_image \
     --graph=tf_files/retrained_graph.pb  \
-    --image=tf_files/flower_photos/daisy/21652746_cc379e0eea_m.jpg
+    --image=tf_files/test/test_m.jpg
 ```
-
-
-
-
-# Problem #1
-
-** Training on Your Own Categories**
-
 
 
 

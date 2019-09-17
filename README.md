@@ -15,8 +15,7 @@ pip install --upgrade "tensorflow==1.7.*"
 
 
 ```
-git clone https://github.com/username/build-your-first-imageClassifier.git
-
+git clone https://github.com/Navan0/build-your-first-imageClassifier.git
 ```
 
 

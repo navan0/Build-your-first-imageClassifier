@@ -101,4 +101,23 @@ python -m scripts.label_image \
 ```
 
 
+tflite_convert --help
 
+
+
+IMAGE_SIZE=224
+tflite_convert \
+  --graph_def_file=tf_files/retrained_graph.pb \
+  --output_file=tf_files/optimized_graph.lite \
+  --input_format=TENSORFLOW_GRAPHDEF \
+  --output_format=TFLITE \
+  --input_shape=1,${IMAGE_SIZE},${IMAGE_SIZE},3 \
+  --input_array=input \
+  --output_array=final_result \
+  --inference_type=FLOAT \
+  --input_data_type=FLOAT
+
+
+
+cp tf_files/optimized_graph.lite android/tflite/app/src/main/assets/graph.lite 
+cp tf_files/retrained_labels.txt android/tflite/app/src/main/assets/labels.txt 

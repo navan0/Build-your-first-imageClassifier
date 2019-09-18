@@ -120,3 +120,64 @@ tflite_convert \
 
 cp tf_files/optimized_graph.lite android/tflite/app/src/main/assets/graph.lite 
 cp tf_files/retrained_labels.txt android/tflite/app/src/main/assets/labels.txt 
+
+
+
+
+
+
+
+
+test
+
+python -m scripts.label_image \
+  --graph=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/retrained_graph.pb  \
+  --image=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/pizztest.jpg
+
+optimize
+
+python -m tensorflow.python.tools.optimize_for_inference \
+  --input=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/retrained_graph.pb \
+  --output=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb \
+  --input_names="input" \
+  --output_names="final_result"
+
+Verify the optimized model
+
+python -m scripts.label_image \
+    --graph=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb \
+    --image=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/pizztest.jpg
+
+
+du -h /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb
+
+
+gzip -c /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb > /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb.gz
+
+Quantize an Image
+
+
+python -m scripts.quantize_graph \
+  --input=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/optimized_graph.pb \
+  --output=/home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb \
+  --output_node_names=final_result \
+  --mode=weights_rounded
+
+
+
+
+gzip -c /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb > /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb.gz
+
+
+
+gzip -l /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb.gz
+
+
+
+python -m scripts.evaluate  tf_files/optimized_graph.pb
+
+
+
+python -m scripts.evaluate  tf_files/rounded_graph.pb
+
+

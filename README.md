@@ -173,11 +173,10 @@ gzip -c /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/round
 gzip -l /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb.gz
 
 
+cp /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/rounded_graph.pb /home/navaneeth/work/tot/build-your-first-imageClassifier/android/tfmobile/assets/graph.pb
 
-python -m scripts.evaluate  tf_files/optimized_graph.pb
+cp /home/navaneeth/work/tot/build-your-first-imageClassifier/tf_files/ /home/navaneeth/work/tot/build-your-first-imageClassifier/android/tfmobile/assets/labels.txt 
 
 
-
-python -m scripts.evaluate  tf_files/rounded_graph.pb
 
 

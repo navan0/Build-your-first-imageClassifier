@@ -23,7 +23,7 @@ git clone https://github.com/Navan0/build-your-first-imageClassifier.git
 cd build-your-first-imageClassifier 
 
 ```
-# Download the training images
+# Download the training images from web
 
 
 
